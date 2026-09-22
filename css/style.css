@@ -95,12 +95,24 @@ a { color: inherit; text-decoration: none; }
   flex-wrap: wrap;
 }
 
-   .logo {
-     font-family: var(--fonte-logo);
-     font-size: 2rem;
-     font-weight: 400;
-     color: var(--cor-primaria-escura);
-   }
+ /* Logo: mostra só a parte desenhada da imagem, sem o espaço vazio.
+   Para mudar o tamanho, altere apenas o --logo-h */
+.logo {
+  --logo-h: 70px;
+  display: block;
+  overflow: hidden;
+  height: var(--logo-h);
+  width: calc(var(--logo-h) * 2.06);
+}
+
+.logo img {
+  display: block;
+  height: calc(var(--logo-h) * 3.29);
+  width: auto;
+  max-width: none;
+  margin-left: calc(var(--logo-h) * -0.735);
+  margin-top: calc(var(--logo-h) * -1.02);
+}
 
 .logo span { color: var(--cor-primaria-escura); }
 
@@ -441,7 +453,80 @@ footer {
   padding: 30px 0 10px;
 }
 
+/* ===== Menu hambúrguer ===== */
+
+/* No computador: esconde o ☰ e o "Meu perfil" extra */
+.menu-toggle,
+.so-celular {
+  display: none;
+}
+
+/* ===== Celular e tablet em pé ===== */
+@media (max-width: 768px) {
+
+  /* Topo: logo à esquerda, ☰ à direita, numa linha só */
+  .navbar-inner {
+    flex-wrap: nowrap;
+    padding: 10px 16px;
+  }
+
+  /* Logo menor no celular */
+   .logo {
+    --logo-h: 44px;
+  }
+
+  /* Bolinha do perfil some (vira link "Meu perfil" no menu) */
+  .nav-perfil {
+    display: none;
+  }
+
+  /* Botão ☰ */
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 30px;
+    line-height: 1;
+    color: var(--cor-primaria-escura);
+    cursor: pointer;
+    padding: 4px 8px;
+  }
+
+  /* Menu escondido até tocar no ☰ */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0;
+    background: var(--cor-fundo);
+    overflow-y: auto;
+  }
+
+  /* Menu aberto */
+  .nav-links.aberto {
+    display: flex;
+  }
+
+  /* Links grandes, fáceis de tocar */
+  .nav-links a {
+    display: block;
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    border-radius: 0;
+    border-bottom: 1px solid var(--cor-borda);
+  }
+
+  .nav-links .so-celular {
+    display: block;
+  }
+}
+
+/* ===== Celular pequeno ===== */
 @media (max-width: 600px) {
-  .navbar-inner { flex-direction: column; align-items: flex-start; }
   .perfil-topo { flex-direction: column; align-items: flex-start; }
 }
