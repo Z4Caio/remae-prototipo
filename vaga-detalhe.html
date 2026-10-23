@@ -8,10 +8,22 @@
 </head>
 <body>
 
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Carregando o site">
+  <div class="preloader-inner">
+    <div class="preloader-orb" aria-hidden="true"></div>
+    <p class="preloader-text">Preparando um espaço para você</p>
+    <div class="preloader-track"><span class="preloader-fill"></span></div>
+  </div>
+</div>
+
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="index.html" class="logo"><img src="img/logo2.png" alt="Mãe Conecta"></a>
- <button class="menu-toggle" aria-label="Abrir menu">☰</button><div class="nav-links"><a href="perfil.html" class="so-celular">Meu perfil</a>
+    <a href="index.html" class="logo"><img src="img/logo2.webp" alt="Mãe Conecta"></a>
+    <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false"></button>
+    <div class="nav-links">
+      <a href="perfil.html" class="so-celular">Meu perfil</a>
       <a href="index.html">Início</a>
       <a href="vagas.html" class="ativo">Vagas</a>
       <a href="forum.html">Fórum</a>
@@ -24,7 +36,7 @@
   </div>
 </nav>
 
-<div class="container">
+<main id="conteudo" class="container">
   <a href="vagas.html" class="voltar">&larr; Voltar para vagas</a>
 
   <div id="conteudo-vaga" class="card"></div>
@@ -32,12 +44,12 @@
   <div id="confirmacao" class="mensagem-sucesso"></div>
 
   <footer>Protótipo de estudo — Mãe Conecta. Todos os dados exibidos são fictícios. · <a href="privacidade.html">Política de Privacidade</a></footer>
-</div>
+</main>
 
 <script src="js/data.js"></script>
 <script>
 const params = new URLSearchParams(window.location.search);
-const id = parseInt(params.get('id'));
+const id = parseInt(params.get('id'), 10);
 const vaga = vagas.find(v => v.id === id);
 const container = document.getElementById('conteudo-vaga');
 
@@ -70,5 +82,7 @@ function candidatar() {
 }
 </script>
 
-   <script src="js/menu.js"></script></body>
+<script src="js/menu.js"></script>
+<script src="js/ui.js"></script>
+</body>
 </html>
